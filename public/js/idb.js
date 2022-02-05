@@ -1,3 +1,4 @@
+// followed online class 18.4.7
 // create variable to hold db connection
 let db;
 // establish a connection to IndexedDB database called 'pizza_hunt' and set it to version 1
@@ -48,9 +49,38 @@ function uploadBudget(){
 
   // get all records from store and set to a variable
   const getAll = budgetObjectStore.getAll();
+// upon a successful .getAll() execution, run this function
+getAll.onsuccess = function() {
+    // if there was data in indexedDb's store, let's send it to the api server
+    if (getAll.result.length > 0) {
+      fetch('/api/transaction', {
+        method: 'POST',
+        body: JSON.stringify(getAll.result),
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(serverResponse => {
+          if (serverResponse.message) {
+            throw new Error(serverResponse);
+          }
+          // open one more transaction
+          const transaction = db.transaction(['new_budget'], 'readwrite');
+          // access the new_budget object store
+          const budgetObjectStore = transaction.objectStore('new_pizza');
+          // clear all items in your store
+          budgetObjectStore.clear();
 
-  // more to come...
+          alert('All saved budgets have been submitted!');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
 };
-
+// listen for app coming back online
 window.addEventListener("online",uploadBudget);
 

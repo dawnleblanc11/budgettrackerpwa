@@ -7,10 +7,13 @@ fetch("/api/transaction")
   })
   .then(data => {
     // save db data on global variable
-    // think this is where you save data
+    
     transactions = data;
+// think this is where you save data when there is no connection
+    
 
-    populateTotal();
+
+populateTotal();
     populateTable();
     populateChart();
   });
