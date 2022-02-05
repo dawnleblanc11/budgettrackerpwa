@@ -13,7 +13,7 @@ fetch("/api/transaction")
     
 
 
-populateTotal();
+    populateTotal();
     populateTable();
     populateChart();
   });
