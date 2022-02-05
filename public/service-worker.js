@@ -1,6 +1,6 @@
 // started with in class exercise service-worker
-const CACHE_NAME = 'my-site-cache-v2';
-const DATA_CACHE_NAME = 'data-cache-v2';
+const CACHE_NAME = 'budget-tracker';
+const DATA_CACHE_NAME = 'budget-tracker-v1';
 
 // added all files from public
 const FILES_TO_CACHE = [

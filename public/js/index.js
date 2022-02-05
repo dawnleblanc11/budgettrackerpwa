@@ -7,6 +7,7 @@ fetch("/api/transaction")
   })
   .then(data => {
     // save db data on global variable
+    // think this is where you save data
     transactions = data;
 
     populateTotal();
