@@ -6,29 +6,11 @@ fetch("/api/transaction")
     return response.json();
   })
   .then((data) => {
-    // save db data on global variable
-    
+    // save db data on global variable 
     transactions = data;
-// think this is where you save data when there is no connection
-    if (!navigator.onLine) {
-      const transaction = db.transaction(["new-budget"], "readwrite");
-
-      //access your object store
-      const budgetObjectStore = transaction.onjectStore("new_budget");
-
-      //get all records from store and set to a variable
-      const getAll = budgetObjectStore.getAll();
-      getAll.onsuccess = function () {
-        transaction = getAll.results.concat(transactions);
-        populateTotal();
-        populateTable();
-        populateChart();
-      };
-    } else {
-        populateTotal();
-        populateTable();
-        populateChart();
-    }
+    populateTotal();
+    populateTable();
+    populateChart();
   });
 
 function populateTotal() {

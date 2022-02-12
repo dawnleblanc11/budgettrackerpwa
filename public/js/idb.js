@@ -21,11 +21,6 @@ request.onsuccess = function(event) {
       uploadBudget();
     }
   };
-  
-  request.onerror = function(event) {
-    // log error here
-    console.log(event.target.errorCode);
-  };
 
   // This function will be executed if we attempt to submit a new budget and there's no internet connection
   // need to find where to add this in js
@@ -39,6 +34,11 @@ function saveRecord(record) {
     // add record to your store with add method
     budgetObjectStore.add(record);
   }
+
+  request.onerror = function(event) {
+    // log error here
+    console.log(event.target.errorCode);
+  };
 
 function uploadBudget(){ 
     // open a transaction on your db

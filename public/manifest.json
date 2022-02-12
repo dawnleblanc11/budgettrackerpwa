@@ -1,6 +1,4 @@
 {
-    "name": "Notetaker",
-    "short_name": "Notetaker",
     "icons": [
       {
         "src": "/icons/icon-72x72.png",
@@ -43,6 +41,10 @@
         "type": "image/png"
       }
     ],
+    "name": "Budget Tracker",
+    "short_name": "Budget",
+    "orientation": "portrait",
+    "description": "An app that allows you to track your budget.",
     "theme_color": "#ffffff",
     "background_color": "#01579b",
     "start_url": "/",
